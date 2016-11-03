@@ -2,6 +2,7 @@
 #include <cstdlib>//for "exit()" on some systems
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -14,12 +15,13 @@ using namespace std;
 */
 
 int linearSearch(auto data,auto key)//auto linearSearch...
-{
+{  //string k = "no";
   for(int i=0; i < data.size(); i++)
   {
 	if (data[i]==key)
 	   return i;
   }
+  //cout << "no";
   return -1;
 } 
 
@@ -33,11 +35,23 @@ int main()
    cout<<"We'll assume the inputs do not have any spaces."<<endl;
    cout<<"\nTo end input type Ctrl + D"<<endl<<endl;
 
-    while(cin>>input)//read an unknown number of inputs
+    /*while(cin>>input)//read an unknown number of inputs
     {
        inputs.push_back(input);
-    }
-
+    }*/
+	ifstream infile{"top1Mweb"};
+    if(!infile)
+    {
+		cout<<"Error reading from file"<<endl;
+		
+	}
+	else
+	while (infile >> input)
+	//for (int m = 0;m < count; m++)
+	{
+		//infile >> input;
+		inputs.push_back(input);
+	}
    cout<<endl<<"["<<inputs.size()<<" values read from input source]"<<endl<<endl;
 
   if(inputs.size() == 0)//no input
